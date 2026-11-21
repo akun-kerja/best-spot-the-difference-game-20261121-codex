@@ -1,0 +1,198 @@
+/* Lantern Garden — Spot the Difference: page styling. Warm dusk palette,
+   roomy HUD, big readable counters, focus rings for keyboard players. */
+
+:root {
+  --ink: #2b2118;
+  --paper: #fdf6e9;
+  --panel: #fffaf0;
+  --accent: #c2571b;
+  --accent-soft: #f2c14e;
+  --leaf: #3f7a4e;
+  --sky: #ffe9c4;
+  --line: #e3d3b8;
+  --good: #2e7d32;
+  --bad: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #ffe9c4 0%, #f7d9a8 45%, #eec27f 100%);
+  color: var(--ink);
+  font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+}
+
+.shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 16px 24px;
+}
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 10px rgba(90, 50, 10, 0.15);
+}
+
+.hud-title h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+
+.hud-title .subtitle { margin: 2px 0 0; font-size: 14px; color: #6b543a; }
+
+.hud-stats {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.stat {
+  min-width: 84px;
+  text-align: center;
+  background: #fff3d6;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8a6d4b;
+}
+
+.stat-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.stat-value.low { color: var(--bad); }
+
+.hud-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+button {
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #8f3d10;
+}
+
+button:hover { filter: brightness(1.08); }
+button:active { transform: translateY(1px); box-shadow: none; }
+button:disabled { opacity: 0.45; cursor: default; transform: none; }
+
+button:focus-visible, .level-dot:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: 2px;
+}
+
+.panel-labels {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 4px 6px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #5d4526;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  max-width: 1180px;
+  height: auto;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(90, 50, 10, 0.2);
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+#game:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: 2px;
+}
+
+.below {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.found-list, .howto {
+  flex: 1 1 320px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 16px;
+}
+
+.found-list h2, .howto h2 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: var(--accent);
+}
+
+.found-list ol { margin: 0; padding-left: 22px; }
+.found-list li { margin: 3px 0; font-size: 15px; }
+.found-list li::marker { color: var(--good); font-weight: 700; }
+.empty-note { margin: 4px 0; color: #8a6d4b; font-style: italic; }
+
+.howto ul { margin: 0 0 10px; padding-left: 20px; }
+.howto li { margin: 4px 0; font-size: 15px; }
+kbd {
+  background: #fff3d6;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: 0 6px;
+  font-family: inherit;
+  font-weight: 700;
+}
+
+.levels { margin: 0; font-size: 15px; }
+.level-dot {
+  background: var(--leaf);
+  box-shadow: 0 2px 0 #2a5236;
+  padding: 6px 10px;
+  margin-left: 4px;
+  font-size: 14px;
+}
+.level-dot.active { background: var(--accent); box-shadow: 0 2px 0 #8f3d10; }
+
+#status {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .hud-title h1 { font-size: 22px; }
+  .stat { min-width: 70px; }
+  .stat-value { font-size: 18px; }
+}

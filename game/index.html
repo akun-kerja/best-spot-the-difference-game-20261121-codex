@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Lantern Garden: an original spot-the-difference game. Two near-identical hand-drawn pictures, seven differences, three scenes.">
+<title>Lantern Garden — Spot the Difference</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="shell">
+  <header class="hud">
+    <div class="hud-title">
+      <h1>Lantern Garden</h1>
+      <p class="subtitle">Spot the Difference &middot; <span id="levelName">Dusk Garden</span></p>
+    </div>
+    <div class="hud-stats">
+      <div class="stat"><span class="stat-label">Found</span><span class="stat-value" id="foundCount">0 / 7</span></div>
+      <div class="stat"><span class="stat-label">Remaining</span><span class="stat-value" id="remainCount">7</span></div>
+      <div class="stat"><span class="stat-label">Time</span><span class="stat-value" id="timeLeft">3:00</span></div>
+      <div class="stat"><span class="stat-label">Score</span><span class="stat-value" id="scoreValue">0</span></div>
+    </div>
+    <div class="hud-actions">
+      <button id="hintButton" type="button" title="Hint (H): reveal one difference, costs 15 points">Hint (H)</button>
+      <button id="restartButton" type="button" title="Restart level (R)">Restart (R)</button>
+      <button id="muteButton" type="button" title="Toggle sound (M)">Sound: On</button>
+    </div>
+  </header>
+
+  <div class="panel-labels" aria-hidden="true">
+    <span>Picture A</span>
+    <span>Picture B &mdash; find what changed</span>
+  </div>
+
+  <canvas id="game" width="1180" height="470" tabindex="0"
+    aria-label="Spot the difference game: two near-identical garden pictures side by side. Click a difference, or move the crosshair with arrow keys and press Enter."></canvas>
+
+  <section class="below">
+    <div class="found-list">
+      <h2>Differences found</h2>
+      <ol id="foundList"></ol>
+      <p class="empty-note" id="foundEmpty">Nothing found yet &mdash; look closely!</p>
+    </div>
+    <div class="howto">
+      <h2>How to play</h2>
+      <ul>
+        <li>Click or tap a difference in either picture to circle it.</li>
+        <li>Arrow keys move the crosshair, <kbd>Enter</kbd> marks a spot.</li>
+        <li>Find all 7 differences before the timer runs out.</li>
+        <li>A wrong click costs 10 points. A hint costs 15 points.</li>
+        <li>Three scenes: Dusk Garden, Harbour Morning, Night Market.</li>
+      </ul>
+      <p class="levels">Level:
+        <button class="level-dot" data-level="0" type="button">1 &middot; Garden</button>
+        <button class="level-dot" data-level="1" type="button">2 &middot; Harbour</button>
+        <button class="level-dot" data-level="2" type="button">3 &middot; Market</button>
+      </p>
+    </div>
+  </section>
+
+  <p id="status" role="status" aria-live="polite"></p>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
